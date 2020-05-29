@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>net.fhirbox.pegacorn</groupId>
+        <artifactId>pegacorn-ladon</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pegacorn-ladon</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>pegacorn-ladon-edge</artifactId>
+    <packaging>pom</packaging>
+    
+    <name>Pegacorn :: Ladon :: Edge</name>
+    <description>The Ingres/Egres Point for (FHIR Based) Events Into/Out-of Ladon</description>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <modules>
+        <module>../pegacorn-ladon-edge-receive</module>
+        <module>../pegacorn-ladon-edge-broadcast</module>
+    </modules>
+    
+</project>
