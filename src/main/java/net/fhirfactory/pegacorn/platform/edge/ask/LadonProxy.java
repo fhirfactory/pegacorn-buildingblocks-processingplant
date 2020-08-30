@@ -2,7 +2,7 @@ package net.fhirfactory.pegacorn.platform.edge.ask;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
-import net.fhirfactory.pegacorn.deployment.topology.manager.ServiceModuleTopologyProxy;
+import net.fhirfactory.pegacorn.deployment.topology.manager.DeploymentTopologyIM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +19,7 @@ public class LadonProxy {
     IGenericClient ladonClient;
 
     @Inject
-    ServiceModuleTopologyProxy topologyProxy;
+    DeploymentTopologyIM topologyProxy;
 
     @PostConstruct
     public void initialise(){
