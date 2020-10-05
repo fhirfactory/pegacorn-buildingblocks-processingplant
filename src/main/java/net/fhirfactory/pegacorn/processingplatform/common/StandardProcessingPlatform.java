@@ -39,7 +39,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 public abstract class StandardProcessingPlatform extends RouteBuilder implements ProcessingPlantServicesInterface {
-    private static final Logger LOG = LoggerFactory.getLogger(StandardProcessingPlatform.class);
 
     private NodeElement node;
     private NodeElementIdentifier nodeId;
@@ -64,17 +63,17 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
     @PostConstruct
     private void initialise() {
         if (!isInitialised) {
-            LOG.debug("StandardProcessingPlatform::initialise(): Invoked!");
+            getLogger().debug("StandardProcessingPlatform::initialise(): Invoked!");
             topologyBuilder.initialiseDeploymentTopology();
-            LOG.trace("StandardProcessingPlatform::initialise(): Topology initialised, specifying node");
+            getLogger().trace("StandardProcessingPlatform::initialise(): Topology initialised, specifying node");
             specifyNode();
-            LOG.trace("StandardProcessingPlatform::initialise(): Node --> {}", this.getProcessingPlantNodeElement());
+            getLogger().trace("StandardProcessingPlatform::initialise(): Node --> {}", this.getProcessingPlantNodeElement());
             specifyNodeElementIdentifier();
-            LOG.trace("StandardProcessingPlatform::initialise(): NodeIdentifier --> {}", this.getProcessingPlantNodeId());
+            getLogger().trace("StandardProcessingPlatform::initialise(): NodeIdentifier --> {}", this.getProcessingPlantNodeId());
             specifyNodeElementFunctionToken();
-            LOG.trace("StandardProcessingPlatform::initialise(): NodeFunctionToken --> {}", this.getNodeToken());
+            getLogger().trace("StandardProcessingPlatform::initialise(): NodeFunctionToken --> {}", this.getNodeToken());
             this.version = specifyProcessingPlantVersion();
-            LOG.trace("StandardProcessingPlatform::initialise(): ProcessingPlant Version --> {}", this.getVersion());
+            getLogger().trace("StandardProcessingPlatform::initialise(): ProcessingPlant Version --> {}", this.getVersion());
             buildProcessingPlantWorkshops();
             isInitialised = true;
         }
@@ -84,6 +83,8 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
     public void initialisePlant() {
         initialise();
     }
+
+    abstract protected Logger getLogger();
 
     abstract protected String specifyProcessingPlantName();
 
@@ -96,21 +97,21 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
     abstract protected void buildProcessingPlantWorkshops();
 
     private void specifyNode() {
-        LOG.debug(".specifyNode(): Entry");
+        getLogger().debug(".specifyNode(): Entry");
         this.node = deploymentIM.getNode(specifyProcessingPlantName(), NodeElementTypeEnum.PROCESSING_PLANT, specifyProcessingPlantVersion());
-        LOG.debug(".specifyNode(): Exit, node (NodeElement) --> {}", this.getProcessingPlantNodeElement());
+        getLogger().debug(".specifyNode(): Exit, node (NodeElement) --> {}", this.getProcessingPlantNodeElement());
     }
 
     private void specifyNodeElementFunctionToken() {
-        LOG.debug(".getNodeElementFunctionToken(): Entry");
+        getLogger().debug(".getNodeElementFunctionToken(): Entry");
         this.nodeToken = this.getProcessingPlantNodeElement().getNodeFunctionToken();
-        LOG.debug(".getNodeElementFunctionToken(): Exit, nodeFunction (NodeElementFunctionToken) --> {}", this.getNodeToken());
+        getLogger().debug(".getNodeElementFunctionToken(): Exit, nodeFunction (NodeElementFunctionToken) --> {}", this.getNodeToken());
     }
 
     private void specifyNodeElementIdentifier() {
-        LOG.debug("getNodeElementIdentifier(): Entry");
+        getLogger().debug("getNodeElementIdentifier(): Entry");
         this.nodeId = this.getProcessingPlantNodeElement().getNodeInstanceID();
-        LOG.debug("getNodeElementIdentifier(): Exit, nodeId (NodeElementIdentifier) --> {}", this.getProcessingPlantNodeId());
+        getLogger().debug("getNodeElementIdentifier(): Exit, nodeId (NodeElementIdentifier) --> {}", this.getProcessingPlantNodeId());
     }
 
     public DeploymentTopologyIM getDeploymentIM() {

@@ -31,6 +31,5 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class CoreInternalSubsystemProcessingPlatform extends StandardProcessingPlatform {
-    private static final Logger LOG = LoggerFactory.getLogger(CoreInternalSubsystemProcessingPlatform.class);
 
 }

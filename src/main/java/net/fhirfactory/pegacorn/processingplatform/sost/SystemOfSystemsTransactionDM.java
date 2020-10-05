@@ -28,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -72,8 +72,8 @@ public class SystemOfSystemsTransactionDM {
      * @param endDate
      * @return
      */
-    public List<SystemOfSystemsTransaction> getTransactionSetOriginatingFromEndpoint(FDNToken endpointId, LocalDateTime startDate, LocalDateTime endDate){
-        LOG.debug(".getTransactionSetOriginatingFromEndpoint(): Entry, endpointId(FDNToken) --> {}, startDate (LocalDateTime) --> {}, endDate (LocalDateTime) --> {}", endpointId, startDate, endDate);
+    public List<SystemOfSystemsTransaction> getTransactionSetOriginatingFromEndpoint(FDNToken endpointId, Date startDate, Date endDate){
+        LOG.debug(".getTransactionSetOriginatingFromEndpoint(): Entry, endpointId(FDNToken) --> {}, startDate (Date) --> {}, endDate (LocalDateTime) --> {}", endpointId, startDate, endDate);
         ArrayList<SystemOfSystemsTransaction> matchingTransactionSet = new ArrayList<SystemOfSystemsTransaction>();
 
         LOG.debug(".getTransactionSetOriginatingFromEndpoint(): Exit, number of Elements retrieved --> {}", matchingTransactionSet.size());
