@@ -22,10 +22,9 @@
 package net.fhirfactory.pegacorn.processingplatform.common;
 
 import net.fhirfactory.pegacorn.common.model.FDN;
-import net.fhirfactory.pegacorn.deployment.properties.PegacornCoreSubsystemComponentNames;
+import net.fhirfactory.pegacorn.deployment.names.PegacornLadonComponentNames;
 import net.fhirfactory.pegacorn.deployment.topology.manager.DeploymentTopologyIM;
 import net.fhirfactory.pegacorn.deployment.topology.map.model.DeploymentTopologyInitialisationInterface;
-import net.fhirfactory.pegacorn.petasos.model.processingplant.DefaultWorkshopSetEnum;
 import net.fhirfactory.pegacorn.petasos.model.processingplant.ProcessingPlantServicesInterface;
 import net.fhirfactory.pegacorn.petasos.model.topology.NodeElement;
 import net.fhirfactory.pegacorn.petasos.model.topology.NodeElementFunctionToken;
@@ -33,7 +32,6 @@ import net.fhirfactory.pegacorn.petasos.model.topology.NodeElementIdentifier;
 import net.fhirfactory.pegacorn.petasos.model.topology.NodeElementTypeEnum;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -53,7 +51,7 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
     private DeploymentTopologyInitialisationInterface topologyBuilder;
 
     @Inject
-    private PegacornCoreSubsystemComponentNames subsystemComponentNames;
+    private PegacornLadonComponentNames subsystemComponentNames;
 
     public StandardProcessingPlatform() {
         super();
@@ -122,7 +120,7 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
         return (this.topologyBuilder);
     }
 
-    public PegacornCoreSubsystemComponentNames getSubsystemComponentNames() {
+    public PegacornLadonComponentNames getSubsystemComponentNames() {
         return (this.subsystemComponentNames);
     }
 
