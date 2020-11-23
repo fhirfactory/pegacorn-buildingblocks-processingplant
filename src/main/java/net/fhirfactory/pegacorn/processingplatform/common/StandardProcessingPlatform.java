@@ -149,6 +149,7 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
 
     @Override
     public NodeElement getWorkshop(String workshopName) {
+        getLogger().info(".getWorkshop(): Entry, workshopNmae --> {}", workshopName);
         boolean found = false;
         NodeElementIdentifier foundNodeId = null;
         for (NodeElementIdentifier containedNode : this.getProcessingPlantNodeElement().getContainedElements()) {
