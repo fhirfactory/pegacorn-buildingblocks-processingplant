@@ -90,8 +90,6 @@ public abstract class StandardProcessingPlatform extends RouteBuilder implements
 
     abstract protected String specifySite();
 
-    abstract protected String specifyPlatform();
-
     abstract protected void buildProcessingPlantWorkshops();
 
     private void specifyNode() {
