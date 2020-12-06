@@ -33,16 +33,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class EdgeSubsystemProcessingPlatform extends StandardProcessingPlatform {
-    private static final Logger LOG = LoggerFactory.getLogger(EdgeSubsystemProcessingPlatform.class);
 
     @Override
     protected void buildProcessingPlantWorkshops() {
-        LOG.debug(".buildProcessingPlantWorkshops(): Entry");
-        if(LOG.isTraceEnabled()) {
-            LOG.trace(".buildProcessingPlantWorkshops(): ProcessingPlant Identifier --> {}", this.getProcessingPlantNodeId());
-            LOG.trace(".buildProcessingPlantWorkshops(): ProcessingPlant NodeElement --> {}", this.getProcessingPlantNodeElement());
+        getLogger().debug(".buildProcessingPlantWorkshops(): Entry");
+        if(getLogger().isTraceEnabled()) {
+            getLogger().trace(".buildProcessingPlantWorkshops(): ProcessingPlant Identifier --> {}", this.getProcessingPlantNodeId());
+            getLogger().trace(".buildProcessingPlantWorkshops(): ProcessingPlant NodeElement --> {}", this.getProcessingPlantNodeElement());
         }
-        LOG.trace(".buildProcessingPlantWorkshops(): 1st, the Interact Workshop");
+        getLogger().trace(".buildProcessingPlantWorkshops(): 1st, the Interact Workshop");
         FDN interactFDN = new FDN(this.getProcessingPlantNodeId());
         interactFDN.appendRDN(new RDN(NodeElementTypeEnum.WORKSHOP.getNodeElementType(), DefaultWorkshopSetEnum.INTERACT_WORKSHOP.getWorkshop()));
         NodeElementIdentifier interactId = new NodeElementIdentifier(interactFDN.getToken());
@@ -58,7 +57,7 @@ public abstract class EdgeSubsystemProcessingPlatform extends StandardProcessing
         interact.setContainingElementID(this.getProcessingPlantNodeId());
         this.getDeploymentIM().registerNode(interact);
         this.getDeploymentIM().addContainedNodeToNode(this.getProcessingPlantNodeId(), interact);
-        LOG.trace(".buildProcessingPlantWorkshops(): 2nd, the Transform");
+        getLogger().trace(".buildProcessingPlantWorkshops(): 2nd, the Transform");
         FDN transformFDN = new FDN(this.getProcessingPlantNodeId());
         transformFDN.appendRDN(new RDN(NodeElementTypeEnum.WORKSHOP.getNodeElementType(), DefaultWorkshopSetEnum.TRANSFORM_WORKSHOP.getWorkshop()));
         NodeElementIdentifier transfromId = new NodeElementIdentifier(transformFDN.getToken());
@@ -74,7 +73,7 @@ public abstract class EdgeSubsystemProcessingPlatform extends StandardProcessing
         transform.setContainingElementID(this.getProcessingPlantNodeId());
         this.getDeploymentIM().registerNode(transform);
         this.getDeploymentIM().addContainedNodeToNode(this.getProcessingPlantNodeId(), transform);
-        LOG.trace(".buildProcessingPlantWorkshops(): 3nd, the Edge");
+        getLogger().trace(".buildProcessingPlantWorkshops(): 3nd, the Edge");
         FDN edgeFDN = new FDN(this.getProcessingPlantNodeId());
         edgeFDN.appendRDN(new RDN(NodeElementTypeEnum.WORKSHOP.getNodeElementType(), DefaultWorkshopSetEnum.EDGE_WORKSHOP.getWorkshop()));
         NodeElementIdentifier edgeId = new NodeElementIdentifier(edgeFDN.getToken());
@@ -91,6 +90,6 @@ public abstract class EdgeSubsystemProcessingPlatform extends StandardProcessing
         edge.setContainingElementID(this.getProcessingPlantNodeId());
         this.getDeploymentIM().registerNode(edge);
         this.getDeploymentIM().addContainedNodeToNode(this.getProcessingPlantNodeId(), edge);
-        LOG.debug(".buildLadonWorkshops(): Exit");
+        getLogger().debug(".buildLadonWorkshops(): Exit");
     }
 }
