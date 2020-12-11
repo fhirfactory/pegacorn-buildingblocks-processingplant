@@ -30,6 +30,7 @@ import net.fhirfactory.pegacorn.petasos.model.topology.NodeElement;
 import net.fhirfactory.pegacorn.petasos.model.topology.NodeElementFunctionToken;
 import net.fhirfactory.pegacorn.petasos.model.topology.NodeElementIdentifier;
 import net.fhirfactory.pegacorn.petasos.model.topology.NodeElementTypeEnum;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 
@@ -64,6 +65,8 @@ public abstract class StandardWorkshop extends RouteBuilder {
 
     abstract protected String specifyWorkshopVersion();
 
+    abstract protected void invokePostConstructInitialisation();
+
     @PostConstruct
     private void initialise() {
         if (!isInitialised) {
@@ -76,6 +79,8 @@ public abstract class StandardWorkshop extends RouteBuilder {
             setVersion(specifyWorkshopVersion());
             getLogger().trace("StandardWorkshop::initialise(): ProcessingPlant Version --> {}", getVersion());
             buildWorkshop();
+
+            invokePostConstructInitialisation();
             getLogger().trace("StandardWorkshop::initialise(): Node --> {}", getNode());
             isInitialised = true;
         }
@@ -151,6 +156,9 @@ public abstract class StandardWorkshop extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+        String fromString = "timer://" +specifyWorkshopName() + "-ingres" + "?repeatCount=1";
 
+        from(fromString)
+        .log(LoggingLevel.DEBUG, "Response Content --> ${body}");
     }
 }
